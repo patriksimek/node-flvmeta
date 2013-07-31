@@ -1,0 +1,28 @@
+{
+	"author": {
+		"name": "Patrik Simek",
+		"url": "http://patriksimek.cz"
+	},
+	"name": "flvmeta",
+	"description": "NodeJS module for FLVmeta",
+	"keywords": [
+		"flv",
+		"flvmeta",
+		"keyframes"
+	],
+	"version": "0.1.0",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/patriksimek/node-flvmeta"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://opensource.org/licenses/mit-license.php"
+		}
+	],
+	"engines": {
+		"node": "*"
+	}
+}
