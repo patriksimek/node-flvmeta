@@ -1,6 +1,6 @@
 #node-flvmeta
 
-NodeJS module for [FLVmeta](https://github.com/noirotm/flvmeta).
+NodeJS module for [FLVmeta](https://github.com/noirotm/flvmeta) (requires version 1.1.2 or later).
 
 ##Installation
 
@@ -70,7 +70,7 @@ Check the validity of FLV file.
 
 ```javascript
 flvmeta.check('./video.flv', {level: 'warning'}, function(err, result) {
-	console.dir(result); // <- {errors: 0, warnings: 0}
+	console.dir(result);
 });
 ```
 
@@ -78,6 +78,26 @@ flvmeta.check('./video.flv', {level: 'warning'}, function(err, result) {
 
 * `level` Print only messages where level is at least `level`. `level` is `info`, `warning` (default), `error`, or `fatal`.
 * `quiet` Do not print messages, only return the status code
+
+###Output example
+
+```
+{
+	filename: '/node-flvmeta/invalid.flv',
+	creation_date: '2013-08-05T21:14:30',
+	generator: 'flvmeta 1.2.0-dev+g',
+	messages: [
+		{
+			level: 'warning',
+			code: 'W81071',
+			offset: 13,
+			message: 'invalid keyframes arrays length' 
+		}
+	],
+	errors: 0,
+	warnings: 1
+}
+```
 
 ##Update
 
@@ -99,10 +119,6 @@ flvmeta.update('./video.flv', {allKeyframes: true}, function(err, metadata) {
 * `outputFile` Specifies path to output file (the default is to overwrite source file).
 * `preserve` Preserve input file existing onMetadata tags. Boolean, default `false`.
 * `resetTimestamps` Reset timestamps so output file starts at zero. Boolean, default `false`.
-
-##TODO
-
-- [ ] find out how check report errors and warnings
 
 ##License
 

@@ -9,21 +9,14 @@ exec = (filein, fileout, args, callback) ->
 	output = null
 	
 	process.stdout.on 'data', (data) ->
-		if args[0] is '-C'
-			# check mode returns number of errors and warning insted of json
-			result = data.toString().match(/([0-9]{1,5}) error\(s\), ([0-9]{1,5}) warning\(s\)/)
-			output =
-				errors: result[1] ? 0
-				warnings: result[2] ? 0
-		
-		else
-			try
-				output = JSON.parse(data)
-			catch ex
-				error = ex
+		#console.log "data: #{data}"
+		try
+			output = JSON.parse(data)
+		catch ex
+			error = ex
 	
 	process.stderr.on 'data', (data) ->
-		console.log "error: #{data}"
+		#console.log "error: #{data}"
 		error = new Error data.toString().split('\n')[0]
 	
 	process.on 'close', (code) =>
@@ -66,7 +59,7 @@ exports.fullDump = (file, options, callback) ->
 	exec file, null, args, callback
 
 exports.check = (file, options, callback) ->
-	args = ['-C']
+	args = ['-C', '-j']
 	
 	if options?.level then args.push "-l=#{options.level}"
 	if options?.quiet is true then args.push '-q'

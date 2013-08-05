@@ -11,9 +11,11 @@ describe 'flvmeta test suite', ->
 			done err
 			
 	it 'check', (done) ->
-		flvmeta.check "#{__dirname}/video.flv", {}, (err, result) ->
+		flvmeta.check "#{__dirname}/invalid.flv", {}, (err, result) ->
 			assert.equal result.errors, 0
-			assert.equal result.warnings, 0
+			assert.equal result.warnings, 1
+			assert.equal result.messages.length, 1
+			assert.equal result.messages[0].code, 'W81071'
 
 			done err
 			
